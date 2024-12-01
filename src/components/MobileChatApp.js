@@ -113,7 +113,7 @@ const MobileChatApp = () => {
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-b from-purple-100 to-blue-100">
-      {/* Header - now styled like the image */}
+      {/* Header */}
       <div className="w-full bg-white p-6 text-center">
         <h1 className="text-2xl font-bold text-gray-900">
           Aurora by Alt/Finance
@@ -121,27 +121,29 @@ const MobileChatApp = () => {
       </div>
 
       {/* Chat Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4">
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+            className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} mb-4`}
           >
-            <div className="flex flex-col">
-              <div
-                className={`max-w-[80%] rounded-lg p-3 shadow-sm ${
-                  message.sender === 'user'
-                    ? 'bg-white text-gray-800'
-                    : 'bg-blue-100 text-gray-800'
-                }`}
-              >
-                {message.text}
+            <div className="w-[70%]"> {/* Container to control max width */}
+              <div className="flex flex-col">
+                <div
+                  className={`rounded-lg p-3 shadow-sm ${
+                    message.sender === 'user'
+                      ? 'bg-white text-gray-800 ml-auto' // ml-auto pushes user messages to the right
+                      : 'bg-blue-100 text-gray-800'
+                  }`}
+                >
+                  {message.text}
+                </div>
+                <span className={`text-xs text-gray-500 mt-1 ${
+                  message.sender === 'user' ? 'text-right' : 'text-left'
+                }`}>
+                  {formatTime(message.timestamp)}
+                </span>
               </div>
-              <span className={`text-xs text-gray-500 mt-1 ${
-                message.sender === 'user' ? 'text-right' : 'text-left'
-              }`}>
-                {formatTime(message.timestamp)}
-              </span>
             </div>
           </div>
         ))}
