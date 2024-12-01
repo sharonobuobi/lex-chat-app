@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+
+.text-xl, .bg-white, .text-white {
+  font-family: "Inter", sans-serif; Arial, sans-serif;
+}
+
+.input_field {
+  height: 40px;
+  padding-inline: 10px;
+  width: 90%;
+  margin-top: 10px;
+}
+
+.rounded-br-none {
+  background-color: #fff;
+  width: 50%;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0px 10px auto;
+}
+
+.text-gray-800 {
+  background-color: #ccdaff;
+  width: 50%;
+  padding: 10px;
+  border-radius: 5px;
+}
+ 
+.flex-1.space-y-4 {
+  height: 70vh;
+  background: #f4f6f8;
+  padding: 10px;
+}
+
