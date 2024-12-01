@@ -105,6 +105,15 @@ const MobileChatApp = () => {
     });
   };
 
+  const formatDate = (date) => {
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  };
+
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !isLoading && inputText.trim() !== '') {
       handleSendMessage();
@@ -112,7 +121,7 @@ const MobileChatApp = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-b from-purple-100 to-blue-100">
+    <div className="flex flex-col h-screen bg-[#f4f6f8]">
       {/* Header */}
       <div className="w-full bg-white p-6 text-center">
         <h1 className="text-2xl font-bold text-gray-900">
@@ -122,17 +131,24 @@ const MobileChatApp = () => {
 
       {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto p-4">
+        {/* Date Divider */}
+        <div className="flex justify-center mb-6">
+          <div className="bg-white px-4 py-2 rounded-full text-sm text-gray-600 shadow-sm">
+            {formatDate(new Date())}
+          </div>
+        </div>
+
         {messages.map((message) => (
           <div
             key={message.id}
             className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} mb-4`}
           >
-            <div className="w-[70%]"> {/* Container to control max width */}
-              <div className="flex flex-col">
+            <div className="w-[70%]">
+              <div className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'} w-full`}>
                 <div
-                  className={`rounded-lg p-3 shadow-sm ${
+                  className={`w-full rounded-lg p-3 shadow-sm ${
                     message.sender === 'user'
-                      ? 'bg-white text-gray-800 ml-auto' // ml-auto pushes user messages to the right
+                      ? 'bg-white text-gray-800'
                       : 'bg-blue-100 text-gray-800'
                   }`}
                 >
@@ -158,13 +174,13 @@ const MobileChatApp = () => {
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Message Aurora..."
-            className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-200"
+            className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200"
             disabled={isLoading}
           />
           <button
             onClick={handleSendMessage}
             disabled={inputText.trim() === '' || isLoading}
-            className="bg-purple-500 text-white p-2 rounded-lg hover:bg-purple-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-[#0049ff] text-white p-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <SendHorizontal className="w-5 h-5" />
           </button>
