@@ -8,7 +8,7 @@ Amplify.configure(awsconfig);
 
 function App() {
   return (
-    <div className="App">
+    <div className="h-screen">
       <MobileChatApp />
     </div>
   );
